@@ -1,3 +1,4 @@
+from operator import length_hint
 import sys
 from pytube import YouTube
 
@@ -9,7 +10,17 @@ if count_argv == 1 or count_argv > 3:
 if count_argv == 2:
     link = sys.argv[1]
     yt = YouTube(link)
-    print(yt.streams)
+    streams = yt.streams
+    print(len(streams))
+    print(streams)
+    print('*'*20)
+    for i in streams:
+        stream_str = str(i)
+        id = stream_str[15: 18]
+        id = id.replace('"','')
+        print(id, end=" --- ")
+        print(i)
+
 elif count_argv == 3:
     link = sys.argv[1]
     id_tag = sys.argv[2]
